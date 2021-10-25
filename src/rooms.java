@@ -5,7 +5,7 @@ public class rooms {
     public static final Scanner CONSOLE = new Scanner(System.in);
     static boolean choice = true;
     static boolean silverBullet = false;
-    static boolean choiceMade = false;
+    static int hurryCount = 0;
 
     public static void print(String input){
         String parsedStr = input.replaceAll("(.{100})", "$1\n");
@@ -56,15 +56,16 @@ public class rooms {
         print("Would you like to charge at the mysterious figure (y) or would you like to calmly approach it (n) ?");
         String hallwayYes = "Deciding that you've already had enough of this weird place you charge the glowing eyes screaming at the top of your lungs. Not even 5 steps into your sprint you trip on your own foot and crash into the floor breaking the floorboards and fall down into the basement. You are an idiot.";
         String hallwayNo = "As you slowly approach the eyes you start to make out its silhouette. And it looks kind of like a dog. As you approach the doggy it stands up and starts growling and barking at you. You stop and start to step back but it’s too late. The dog has lunged at you and started mauling on your face";
-        while (!choiceMade){
+        while (hurryCount < 3){
+            print("HURRY");
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            print("HURRY");
-            yesOrNo(hallwayYes,hallwayNo);
+            hurryCount++;
         }
+        yesOrNo(hallwayYes,hallwayNo);
         if (choice){
             basement();
         } else {
@@ -79,7 +80,7 @@ public class rooms {
             print("Do you flip the switch on the left (y) or the right (n) ?");
             String basementYes = "A booming voice says, ”YOU FOOL! YOU’VE RELEASED THE SNAKES”. You are swiftly murdered by the snakes.";
             String basementNo = "The lights flicker on after a moment and blind you. It gives you plenty of light to see the stairs out of the basement. As you leave up the creaky stairs you notice chains and huge scratch marks are all over the floor and walls. You quickly exit this creepy basement and enter the den";
-            yesOrNo(basementYes,basementNo);
+            yesOrNo(basementNo,basementYes);
         if (choice){
             den();
         } else {
